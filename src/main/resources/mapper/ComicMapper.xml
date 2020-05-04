@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ComicMapper">
+    <select id="getComicbyId" resultType="Comic" parameterType="int">
+          select * from comic where id = #{id};
+    </select>
+
+    <select id="getComicbytitle" resultType="Comic" parameterType="String">
+        select * from comic where title = #{title};
+    </select>
+    <select id="findall" resultType="Comic">
+        select * from comic
+    </select>
+
+    <insert id="AddComic" parameterType="Comic">
+        insert into comic(cover, title, author, date, press, abs, cid) values (#{cover},#{title},#{author},#{date},#{press},#{abs},#{cid});
+    </insert>
+
+    <select id="findbyCategory" parameterType="int" resultType="Comic" >
+        select * from comic where cid = #{cid};
+    </select>
+
+   <update id="UpdateComic" parameterType="Comic">
+        update comic
+        set cover = #{cover},title = #{title},author = #{author},date = #{date},press = #{press},abs = #{abs},cid = #{cid}
+        where title = #{title}
+   </update>
+
+    <delete id="DeletebyID" parameterType="int">
+        delete
+        from comic
+        where id = #{id};
+    </delete>
+</mapper>

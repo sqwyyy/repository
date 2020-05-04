@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.UserMapper">
+    <resultMap id="user" type="User">
+        <result column="id" property="id"/>
+        <result column="password" property="password"/>
+        <result column="username" property="username"/>
+        <result column="email" property="email"/>
+        <result column="cover" property="cover"/>
+    </resultMap>
+    <select id="findUserbyId" resultType="User" parameterType="int" resultMap="user">
+          select * from user where id = #{id}
+    </select>
+
+    <select id="getbynameandpassword" resultType="User" parameterType="String" resultMap="user">
+        select * from user where username = #{username} and password = #{password}
+    </select>
+
+    <select id="getbyname" resultType="User" parameterType="String" resultMap="user">
+        select * from user where username = #{username}
+    </select>
+
+    <insert id="save" parameterType="User">
+        insert into user(username,password,email,cover) values (#{username},#{password},#{email},#{cover})
+    </insert>
+</mapper>

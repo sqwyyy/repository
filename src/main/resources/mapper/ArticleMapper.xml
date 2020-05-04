@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ArticleMappper">
+    <resultMap id="article" type="Article">
+        <result column="content_html" property="contentHtml"/>
+        <result column="content_md" property="contentMd"/>
+        <result column="abstract" property="abstract"/>
+        <result column="articlecover" property="articleDate"/>
+        <result column="uid" property="uid"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List" >
+        id,title, content_html, content_md, abstract, cover, articlecover,uid
+    </sql>
+    <select id="getArticlebyId" resultType="Article" parameterType="int" resultMap="article">
+          select * from article where id = #{id} and uid=#{uid};
+    </select>
+
+    <select id="getall" resultType="Article" resultMap="article" parameterType="int">
+          select <include refid="Base_Column_List" /> from article where uid=#{uid} order by id
+    </select>
+
+    <select id="getbyabstract" resultType="Article" parameterType="Article" resultMap="article">
+        SELECT * FROM article WHERE uid = #{uid} AND abstract = #{abstract}
+    </select>
+
+    <select id="getArticlebytitle" resultType="Article" parameterType="Article" resultMap="article">
+        select * from article where title = #{title} and uid=#{uid};
+    </select>
+
+    <insert id="Addarticle" parameterType="Article">
+        insert into article(title, content_html, content_md, abstract, cover, articlecover, uid) values (#{title},#{contentHtml},#{contentMd},#{abstract},#{cover},#{articleDate},#{uid})
+    </insert>
+
+
+    <update id="UpdateArticle" parameterType="Article">
+        update article
+        set title = #{title}, content_html = #{contentHtml}, content_md = #{contentMd}, abstract = #{abstract}, cover = #{cover}, articlecover = #{articleDate}
+        where id = #{id} and uid = #{uid};
+   </update>
+
+    <delete id="DeletebyID" parameterType="int">
+        delete
+        from article
+        where id = #{id} and uid = #{uid};
+    </delete>
+</mapper>
