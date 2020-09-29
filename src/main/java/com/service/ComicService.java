@@ -36,10 +36,13 @@ public class ComicService {
         }
     }
 
-    public List<Comic> findbyCategory(int cid)
-    {
-        if(cid==0)  return comicMapper.findall();
-        else return comicMapper.findbyCategory(cid);
+    public List<Comic> findbyCategory(int cid) {
+        if(cid==0){
+            return comicMapper.findall();
+        }
+        else{
+            return comicMapper.findbyCategory(cid);
+        }
     }
 
     public void delete(int id){

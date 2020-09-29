@@ -42,4 +42,8 @@ public class MenuService {
     public List<Menu> getallbyParentId(int id){
         return menuMapper.findbyParentid(id);
     }
+
+    public Menu getlistMenusById(int id){
+        return menuMapper.findbyid(id);
+    }
 }

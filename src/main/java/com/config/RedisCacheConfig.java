@@ -43,7 +43,7 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
         /*
         1. entryTtl: 定义默认的cache time-to-live.
 
-        2. disableCachingNullValues: 禁止缓存Null对象. 这个识需求而定.
+        2. disableCachingNullValues: 禁止缓存Null对象. 这个识需求=而定.
 
         3. computePrefixWith: 此处定义了cache key的前缀, 避免公司不同项目之间的key名称冲突.
 

@@ -16,10 +16,15 @@ import java.util.List;
 public interface UserMapper {
     public User findUserbyId(@Param("id") int id);
 
+    public List<User> findall();
 
     public User getbynameandpassword(String username, String password);
 
     public User getbyname(String username);
 
     public void save(User user);
+
+    public void update(User user);
+
+    public void delete(@Param("id") int id);
 }

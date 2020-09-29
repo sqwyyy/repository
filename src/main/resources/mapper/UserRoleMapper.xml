@@ -7,4 +7,7 @@
           select * from user_role where uid = #{uid};
     </select>
 
+    <insert id="insert" parameterType="UserRole">
+        insert into user_role(uid,rid) values (#{uid},#{rid});
+    </insert>
 </mapper>

@@ -23,6 +23,20 @@
     </select>
 
     <insert id="save" parameterType="User">
-        insert into user(username,password,email,cover) values (#{username},#{password},#{email},#{cover})
+        insert into user(username,password,email,cover,phone) values (#{username},#{password},#{email},#{cover},#{phone})
     </insert>
+
+    <select id="findall" resultType="User" resultMap="user">
+        select * from user
+    </select>
+
+    <update id="update" parameterType="User">
+        update user
+        set username =#{username},email = #{email}, enable = #{enable}, password = #{password}, phone = #{phone}
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from user where id = #{id}
+    </delete>
 </mapper>

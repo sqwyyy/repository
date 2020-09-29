@@ -6,7 +6,7 @@
     <resultMap id="article" type="Article">
         <result column="content_html" property="contentHtml"/>
         <result column="content_md" property="contentMd"/>
-        <result column="abstract" property="abstract"/>
+        <result column="abstract" property="Abstract"/>
         <result column="articlecover" property="articleDate"/>
         <result column="uid" property="uid"/>
     </resultMap>
@@ -24,7 +24,7 @@
     </select>
 
     <select id="getbyabstract" resultType="Article" parameterType="Article" resultMap="article">
-        SELECT * FROM article WHERE uid = #{uid} AND abstract = #{abstract}
+        SELECT * FROM article WHERE uid = #{uid} AND abstract = #{Abstract}
     </select>
 
     <select id="getArticlebytitle" resultType="Article" parameterType="Article" resultMap="article">
@@ -32,13 +32,13 @@
     </select>
 
     <insert id="Addarticle" parameterType="Article">
-        insert into article(title, content_html, content_md, abstract, cover, articlecover, uid) values (#{title},#{contentHtml},#{contentMd},#{abstract},#{cover},#{articleDate},#{uid})
+        insert into article(title, content_html, content_md, abstract, cover, articlecover, uid) values (#{title},#{contentHtml},#{contentMd},#{Abstract},#{cover},#{articleDate},#{uid})
     </insert>
 
 
     <update id="UpdateArticle" parameterType="Article">
         update article
-        set title = #{title}, content_html = #{contentHtml}, content_md = #{contentMd}, abstract = #{abstract}, cover = #{cover}, articlecover = #{articleDate}
+        set title = #{title}, content_html = #{contentHtml}, content_md = #{contentMd}, abstract = #{Abstract}, cover = #{cover}, articlecover = #{articleDate}
         where id = #{id} and uid = #{uid};
    </update>
 

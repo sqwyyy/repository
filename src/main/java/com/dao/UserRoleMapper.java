@@ -12,4 +12,6 @@ import java.util.List;
 @Mapper
 public interface UserRoleMapper {
     public List<UserRole>listbyuid(@Param("uid")int uid);
+
+    public void insert(UserRole userRole);
 }

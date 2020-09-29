@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.RoleMapper">
+    <resultMap id="BaseRole" type="Role">
+        <result column="name_zh" property="nameZh"/>
+    </resultMap>
+
+
+    <select id="findbyId" resultType="Role" parameterType="int" resultMap="BaseRole">
+          select * from role where id = #{id};
+    </select>
+
+    <select id="findall" resultType="Role" resultMap="BaseRole">
+          select * from role
+    </select>
+
+    <update id="updateRole" parameterType="Role">
+        update role
+        set name =#{name},name_zh = #{nameZh}, enabled = #{enabled}
+        where id = #{id}
+    </update>
+
+    <insert id="add" parameterType="Role">
+        insert into role (name,name_zh) values (#{name},#{nameZh});
+    </insert>
+
+</mapper>

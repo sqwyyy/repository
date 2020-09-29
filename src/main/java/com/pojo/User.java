@@ -13,10 +13,11 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Data
 public class User implements Serializable {
-    int id;
+    private int id;
     private String username;
     private  String password;
     private String email;
+    private String phone;
     private String cover;
-
+    private boolean enable;
 }

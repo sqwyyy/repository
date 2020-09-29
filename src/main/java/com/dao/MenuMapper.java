@@ -14,4 +14,6 @@ public interface MenuMapper {
     public Menu findbyId(@Param("id")int id);
 
     public List<Menu> findbyParentid(@Param("parentId")int parentId);
+
+    public Menu findbyid(@Param("id")int id);
 }

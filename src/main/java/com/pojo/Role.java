@@ -1,43 +1,27 @@
 package com.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
 /**
  * @date 2020/2/14 - 20:37
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Role {
     private int id;
     private String name;
-    private String name_zh;
+    private String nameZh;
+    private boolean enabled;
 
-    public Role() {
-    }
+    private List<Permission> perms;
 
-    public Role(int id, String name, String name_zh) {
-        this.id = id;
-        this.name = name;
-        this.name_zh = name_zh;
-    }
+    private  List<Menu> menus;
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName_zh() {
-        return name_zh;
-    }
-
-    public void setName_zh(String name_zh) {
-        this.name_zh = name_zh;
-    }
 }

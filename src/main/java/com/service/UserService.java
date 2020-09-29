@@ -1,16 +1,14 @@
 package com.service;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
 import com.dao.UserMapper;
 import com.pojo.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.util.HtmlUtils;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @date 2020/2/6 - 12:14
@@ -19,9 +17,12 @@ import org.springframework.web.util.HtmlUtils;
 @CacheConfig(cacheNames = "user")
 public class UserService {
 
-    //private Logger logger = LoggerFactory.getLogger(UserService.class);
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private TokenService tokenService;
+    @Autowired
+    UserRoleService userRoleService;
 
     public User get(String username, String password){
         //Map<String,Object> map = new HashMap<String,Object>();
@@ -47,6 +48,7 @@ public class UserService {
         user.setUsername(username);
         user.setEmail(email);
         user.setCover(cover);
+        user.setEnable(true);
 
         if (username.equals("") || password.equals("")) {
             return 0;
@@ -56,12 +58,38 @@ public class UserService {
             return 2;
         }
         userMapper.save(user);
+        User newuser = getbyname(username);
+        userRoleService.insertUserRole(newuser.getId(),2);
         return 1;
     }
 
     boolean isExist(String username){
         User user = userMapper.getbyname(username);
         return user!=null;
+    }
+
+    public List<User> list(){
+        return userMapper.findall();
+    }
+
+    public void UpdateUser(User userdao){
+        System.out.println(userdao.toString());
+        userMapper.update(userdao);
+    }
+
+    public void deleteUser(int id){
+        userMapper.delete(id);
+    }
+
+    public void updateUserStatus(HttpServletRequest request){
+        User userdao = tokenService.getUser(request);
+        userMapper.update(userdao);
+    }
+
+    public void resetPassword(HttpServletRequest request){
+        User userdao = tokenService.getUser(request);
+        userdao.setPassword("123");
+        userMapper.update(userdao);
     }
 
 }

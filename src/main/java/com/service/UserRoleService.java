@@ -19,4 +19,8 @@ public class UserRoleService {
     public List<UserRole> listbyuid(int uid){
         return userRoleMapper.listbyuid(uid);
     }
+
+    public void insertUserRole(int uid,int rid){
+        userRoleMapper.insert(new UserRole(1,uid,rid));
+    }
 }

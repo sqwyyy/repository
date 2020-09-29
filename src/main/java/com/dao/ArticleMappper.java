@@ -10,6 +10,8 @@ import java.util.List;
 /**
  * @date 2020/2/18 - 13:23
  */
+
+
 @Mapper
 public interface ArticleMappper {
     public Article getArticlebyId(@Param("id") int id,@Param("uid")int uid);

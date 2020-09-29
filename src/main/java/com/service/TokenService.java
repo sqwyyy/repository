@@ -16,11 +16,12 @@ public class TokenService {
     @Autowired
     UserService userService;
 
+    // 将 user id 保存到 token 里面 以 password 作为 token 的密钥
     public String getToken(User user) {
         String token="";
         String userid = String.valueOf(user.getId());
-        token= JWT.create().withAudience(userid)// 将 user id 保存到 token 里面
-                .sign(Algorithm.HMAC256(user.getPassword()));// 以 password 作为 token 的密钥
+        token= JWT.create().withAudience(userid)
+                .sign(Algorithm.HMAC256(user.getPassword()));
         return token;
     }
 

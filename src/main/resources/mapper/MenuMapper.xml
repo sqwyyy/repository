@@ -17,4 +17,9 @@
         select * from menu where parent_id = #{parentId};
     </select>
 
+
+    <select id="findbyid" resultType="Menu" parameterType="int" resultMap="BaseMenu">
+        select * from menu where id = #{id};
+    </select>
+
 </mapper>
